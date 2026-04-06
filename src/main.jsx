@@ -1,23 +1,28 @@
+import React, { Suspense, lazy } from 'react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './index.css'
-import App from './App.jsx'
-import AdminPage from './pages/AdminPage.jsx'
 import { ToastProvider } from './context/ToastContext'
 import ErrorBoundary from './components/ErrorBoundary'
+import { HeroSkeleton } from './components/Skeletons'
+
+// PERFORMANCE PROTOCOL: Lazy Loading Admin & App for < 100ms FCP
+const App = lazy(() => import('./App.jsx'))
+const AdminPage = lazy(() => import('./pages/AdminPage'))
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ErrorBoundary>
       <BrowserRouter>
         <ToastProvider>
-          <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="/admin" element={<AdminPage />} />
-            {/* Catch-all for SPA sections to prevent routing warnings */}
-            <Route path="/:section" element={<App />} />
-          </Routes>
+          <Suspense fallback={<HeroSkeleton />}>
+            <Routes>
+              <Route path="/admin/*" element={<AdminPage />} />
+              <Route path="/:section?" element={<App />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Suspense>
         </ToastProvider>
       </BrowserRouter>
     </ErrorBoundary>

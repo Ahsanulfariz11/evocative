@@ -91,7 +91,7 @@ export default function EventsTab() {
                {/* Thumbnail Preview */}
                <div className="w-20 h-20 sm:w-32 sm:h-20 border-2 border-black bg-white shrink-0 overflow-hidden relative shadow-brutal-sm group-hover:shadow-none transition-all">
                  {item.img ? (
-                   <img src={item.img} alt="" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" />
+                   <img src={item.img} alt="" className="w-full h-full object-cover group-hover:brightness-110 transition-all duration-700 scale-105 group-hover:scale-100" />
                  ) : (
                    <div className="w-full h-full flex items-center justify-center bg-[repeating-linear-gradient(45deg,transparent,transparent_5px,rgba(0,0,0,0.05)_5px,rgba(0,0,0,0.05)_6px)]">
                      <ImageIcon className="w-6 h-6 text-neutral-300" />

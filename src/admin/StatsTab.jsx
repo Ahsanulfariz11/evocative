@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TrendingUp, QrCode, Smartphone, MapPin, Coffee, Calendar } from 'lucide-react';
 import { useAnalytics } from '../hooks/useFirebase';
 import { Loader } from './Common';
 
 export default function StatsTab() {
   const { stats, loading } = useAnalytics();
-  const menuUrl = window.location.origin + '/#menu';
+  const [prodUrl, setProdUrl] = useState('');
+  const menuUrl = prodUrl || (window.location.origin + '/#menu');
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(menuUrl)}&bgcolor=ffffff&color=000000&margin=10`;
-
+  
   const cards = [
     { label: 'Total Reservations', value: stats.reservations || 0, icon: Calendar, color: 'text-blue-600' },
     { label: 'Map Interactions', value: stats.maps_view || 0, icon: MapPin, color: 'text-green-600' },
@@ -43,9 +44,21 @@ export default function StatsTab() {
             Gunakan QR Code ini untuk akses Menu Digital di kafe Anda. Pelanggan cukup scan untuk langsung melihat daftar menu premium Anda.
           </p>
           <div className="space-y-4 relative z-10">
-            <div className="p-4 bg-neutral-900 border border-white/10">
-              <p className="text-[10px] font-mono uppercase text-neutral-500 mb-2">Target Link:</p>
-              <code className="text-xs text-green-400 break-all">{menuUrl}</code>
+            <div className="p-4 bg-neutral-900 border border-white/10 space-y-4">
+              <div>
+                <p className="text-[10px] font-mono uppercase text-neutral-500 mb-2">Manual Production URL (Optional):</p>
+                <input 
+                  type="text"
+                  placeholder="https://evocative.space"
+                  value={prodUrl}
+                  onChange={(e) => setProdUrl(e.target.value)}
+                  className="w-full bg-black border border-white/20 p-2 text-xs text-white focus:border-white focus:outline-none font-mono"
+                />
+              </div>
+              <div>
+                <p className="text-[10px] font-mono uppercase text-neutral-500 mb-2">QR Redirect Data:</p>
+                <code className="text-[10px] text-green-400 break-all">{menuUrl}</code>
+              </div>
             </div>
             <a 
               href={qrUrl} 

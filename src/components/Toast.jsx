@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { X, Check, Info, AlertTriangle, Loader2 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 // Toast Types: success, error, info
 const TOAST_ICONS = {
@@ -10,28 +10,29 @@ const TOAST_ICONS = {
   loading: <Loader2 className="w-4 h-4 animate-spin text-black" />,
 };
 
-let toastTimeout;
-
 const Toast = ({ message, type = 'success', duration = 4000, onClose }) => {
   useEffect(() => {
+    let timeout;
     if (duration > 0) {
-      toastTimeout = setTimeout(() => {
+      timeout = setTimeout(() => {
         onClose();
       }, duration);
     }
-    return () => clearTimeout(toastTimeout);
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
   }, [duration, onClose]);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 100, x: '-50%' }}
+      initial={{ opacity: 0, y: 50, x: '-50%' }}
       animate={{ opacity: 1, y: 0, x: '-50%' }}
-      exit={{ opacity: 0, y: 20, x: '-50%' }}
+      exit={{ opacity: 0, scale: 0.95, x: '-50%' }}
       className="fixed bottom-10 left-1/2 z-[200] w-full max-w-xs"
     >
       <div className="bg-white border-2 border-black p-4 flex items-center gap-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
         <div className="shrink-0">
-          {TOAST_ICONS[type]}
+          {TOAST_ICONS[type] || TOAST_ICONS.info}
         </div>
         <div className="flex-1 min-w-0">
           <p className="font-mono text-[11px] uppercase font-bold tracking-tight text-black truncate">

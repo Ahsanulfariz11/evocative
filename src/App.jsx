@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Lenis from 'lenis';
+import { useParams } from 'react-router-dom';
 
-// Components
+// Core Components
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -12,16 +13,19 @@ import CommunityHub from './components/CommunityHub';
 import Location from './components/Location';
 import Footer from './components/Footer';
 import SEO from './components/SEO';
-import { HeroSkeleton } from './components/Skeletons';
 import ReservationModal from './components/ReservationModal';
-import { useState } from 'react';
 
 // Hooks & Utils
-import { useMenuItems, useEvents, useReviews, useGallery, useSettings, useSpace } from './hooks/useFirebase';
+import { 
+  useMenuItems, 
+  useEvents, 
+  useReviews, 
+  useGallery, 
+  useSettings, 
+  useSpace 
+} from './hooks/useFirebase';
 import { useScrollSpy } from './hooks/useScrollSpy';
 import { NAV_LINKS } from './constants/navLinks';
-
-import { useParams } from 'react-router-dom';
 
 export default function App() {
   const { section } = useParams();
@@ -37,19 +41,19 @@ export default function App() {
 
   const [isResModalOpen, setIsResModalOpen] = useState(false);
 
-  // Auto-Scroll to section from URL param
+  // Auto-Scroll Protocol
   useEffect(() => {
-    const isDataLoaded = !settingsLoading && !menuLoading && !eventsLoading && !galleryLoading && !spaceLoading;
-    if (section && isDataLoaded) {
-      setTimeout(() => {
+    if (section && !settingsLoading && !menuLoading) {
+      const timer = setTimeout(() => {
         const el = document.getElementById(section);
         if (el) {
           const top = el.getBoundingClientRect().top + window.scrollY - 64;
           window.scrollTo({ top, behavior: 'smooth' });
         }
-      }, 500); // Small delay to ensure render is complete
+      }, 500);
+      return () => clearTimeout(timer);
     }
-  }, [section, settingsLoading, menuLoading, eventsLoading, galleryLoading, spaceLoading]);
+  }, [section, settingsLoading, menuLoading]);
 
   // Smooth Scroll Initialization (Lenis)
   useEffect(() => {
@@ -72,32 +76,52 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-black overflow-x-hidden" style={{ paddingTop: '64px' }}>
       <SEO settings={settings} />
+      
       <Navbar
         activeSection={activeSection}
         settings={settings}
         settingsLoading={settingsLoading}
         onOpenReservation={() => setIsResModalOpen(true)}
       />
+
       <Hero
         settings={settings}
         loading={settingsLoading}
         onOpenReservation={() => setIsResModalOpen(true)}
       />
+      
       <About settings={settings} />
-      <Archive galleryItems={galleryItems || []} loading={galleryLoading} />
-      <MenuSection menuItems={menuItems || []} loading={menuLoading} />
-      <Space spaceItems={spaceItems || []} loading={spaceLoading} settings={settings} />
+      
+      <Archive 
+        galleryItems={galleryItems || []} 
+        loading={galleryLoading} 
+      />
+      
+      <MenuSection 
+        menuItems={menuItems || []} 
+        loading={menuLoading} 
+      />
+      
+      <Space 
+        spaceItems={spaceItems || []} 
+        loading={spaceLoading} 
+        settings={settings} 
+      />
+      
       <CommunityHub
         eventsData={eventsData || []}
         reviewsData={reviewsData || []}
         eventsLoading={eventsLoading}
         reviewsLoading={reviewsLoading}
       />
+      
       <Location settings={settings} />
+
       <Footer
         settings={settings}
         onOpenReservation={() => setIsResModalOpen(true)}
       />
+
       <ReservationModal
         isOpen={isResModalOpen}
         onClose={() => setIsResModalOpen(false)}

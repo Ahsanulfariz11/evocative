@@ -57,15 +57,20 @@ export default function CatalogTab() {
 
         {showForm && (
           <div className="p-6 sm:p-10 space-y-10 bg-white border-t-2 border-black animate-in slide-in-from-top duration-500">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              <AdminInput label="Menu Name *" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="e.g. Espresso Tonic" />
-              <AdminSelect label="Category" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} options={CATEGORIES} />
-              <AdminInput label="Price *" value={form.price} onChange={e => setForm({ ...form, price: e.target.value })} placeholder="e.g. 35K" />
-              <AdminInput label="Prep Time" value={form.prepTime} onChange={e => setForm({ ...form, prepTime: e.target.value })} placeholder="e.g. 45s" />
-              <div className="sm:col-span-2">
-                <AdminInput label="Flavor Notes / Ingredients" value={form.notes} onChange={e => setForm({ ...form, notes: e.target.value })} placeholder="e.g. Chocolatey, Nutty, Full Body" />
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+              {/* Left Column: Form Fields */}
+              <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+                <AdminInput label="Menu Name *" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="e.g. Espresso Tonic" />
+                <AdminSelect label="Category" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} options={CATEGORIES} />
+                <AdminInput label="Price *" value={form.price} onChange={e => setForm({ ...form, price: e.target.value })} placeholder="e.g. 35K" />
+                <AdminInput label="Prep Time" value={form.prepTime} onChange={e => setForm({ ...form, prepTime: e.target.value })} placeholder="e.g. 45s" />
+                <div className="sm:col-span-2">
+                  <AdminInput label="Flavor Notes / Ingredients" value={form.notes} onChange={e => setForm({ ...form, notes: e.target.value })} placeholder="e.g. Chocolatey, Nutty, Full Body" />
+                </div>
               </div>
-              <div className="sm:col-start-1 sm:col-end-3">
+              
+              {/* Right Column: Asset Upload */}
+              <div className="lg:col-span-4 border-2 border-black bg-neutral-50 p-6 flex flex-col justify-center">
                 <ImageUploader 
                   label="Menu Asset / Photo" 
                   aspect={1} 
@@ -77,8 +82,8 @@ export default function CatalogTab() {
             
             <div className="flex flex-wrap gap-4 pt-6 border-t-2 border-neutral-100">
               <button onClick={handleSave} disabled={saving || !form.name || !form.price}
-                className="flex-1 sm:flex-none flex items-center justify-center gap-3 bg-black text-white px-10 py-4 font-mono text-[11px] font-black uppercase tracking-widest hover:bg-neutral-800 disabled:opacity-50 transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,0.2)] active:translate-y-1 active:shadow-none">
-                {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />} Save Item
+                className="flex-1 sm:flex-none flex items-center justify-center gap-3 bg-black text-white px-12 py-4 font-mono text-[12px] font-black uppercase tracking-widest hover:bg-neutral-800 disabled:opacity-50 transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none">
+                {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />} Deploy Item
               </button>
               <button 
                 onClick={() => setShowForm(false)} 
@@ -96,7 +101,7 @@ export default function CatalogTab() {
           <div key={item.id} className="border-2 border-black bg-white group overflow-hidden hover:shadow-brutal-sm transition-all duration-300 flex flex-col">
             <div className="relative aspect-square bg-neutral-100 overflow-hidden">
               {item.img ? (
-                <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0" />
+                <img src={item.img} alt="" className="w-full h-full object-cover group-hover:brightness-110 transition-all duration-700 scale-105 group-hover:scale-100" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-[repeating-linear-gradient(45deg,transparent,transparent_5px,rgba(0,0,0,0.03)_5px,rgba(0,0,0,0.03)_6px)]">
                   <Image className="w-8 h-8 text-neutral-200" />

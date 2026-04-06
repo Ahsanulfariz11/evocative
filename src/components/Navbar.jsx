@@ -29,7 +29,10 @@ function Navbar({ activeSection, settings, settingsLoading, onOpenReservation })
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white" style={{ height: '64px' }}>
+    <nav 
+      className="fixed top-0 left-0 w-full z-50 bg-white" 
+      style={{ height: '64px', willChange: 'transform' }}
+    >
       <div className="max-width-screen-2xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2.5 min-h-0 h-auto" style={{ minHeight: 'unset' }}>

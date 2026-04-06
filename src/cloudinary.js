@@ -30,3 +30,16 @@ export const uploadToCloudinary = async (file, cloudName = "dmi66s3us", uploadPr
     throw error;
   }
 };
+// GLOBAL OPTIMIZER: Ensures every Cloudinary asset is compressed and formatted for max performance.
+// Specifically targets "f_auto" (WebP/AVIF) and "q_auto" (Smart Compression).
+export const optimizeCloudinaryUrl = (url, options = "") => {
+  if (!url || !url.includes("res.cloudinary.com")) return url;
+  
+  // Example: upload/v12345/image.jpg -> upload/f_auto,q_auto,options/v12345/image.jpg
+  const parts = url.split("/upload/");
+  if (parts.length === 2) {
+    const transformation = options ? `f_auto,q_auto,${options}` : "f_auto,q_auto";
+    return `${parts[0]}/upload/${transformation}/${parts[1]}`;
+  }
+  return url;
+};

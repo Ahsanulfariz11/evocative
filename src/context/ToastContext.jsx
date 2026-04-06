@@ -16,7 +16,7 @@ export const ToastProvider = ({ children }) => {
   const [toast, setToast] = useState(null);
 
   const showToast = useCallback((message, type = 'success', duration = 4000) => {
-    setToast({ message, type, duration });
+    setToast({ message, type, duration, id: Date.now() });
   }, []);
 
   const hideToast = useCallback(() => {
@@ -28,10 +28,10 @@ export const ToastProvider = ({ children }) => {
   return (
     <ToastContext.Provider value={value}>
       {children}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {toast && (
           <Toast
-            key={toast.message + Date.now()}
+            key={toast.id}
             message={toast.message}
             type={toast.type}
             duration={toast.duration}

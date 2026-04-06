@@ -18,8 +18,12 @@ export default function ConfigTab() {
 
   const handleSave = async (e) => {
     e.preventDefault();
+    if (!data) return;
     setSaving(true);
-    try { await updateSettings(data); showToast('Settings saved'); }
+    try { 
+      await updateSettings(data); 
+      showToast('Settings successfully deployed'); 
+    }
     catch (e) { showToast('Save failed', 'error'); }
     finally { setSaving(false); }
   };
@@ -91,8 +95,8 @@ export default function ConfigTab() {
             <AdminInput label="TikTok" value={data.contact?.tiktok} onChange={e => setData({...data, contact: {...data.contact, tiktok: e.target.value}})} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            <AdminInput label="Latitude" type="number" step="any" value={data.contact?.coordinates?.lat} onChange={e => setData({...data, contact: {...data.contact, coordinates: {...data.contact.coordinates, lat: parseFloat(e.target.value)}}})} />
-            <AdminInput label="Longitude" type="number" step="any" value={data.contact?.coordinates?.lng} onChange={e => setData({...data, contact: {...data.contact, coordinates: {...data.contact.coordinates, lng: parseFloat(e.target.value)}}})} />
+            <AdminInput label="Latitude" type="number" step="any" value={data.contact?.coordinates?.lat || ''} onChange={e => setData({...data, contact: {...data.contact, coordinates: {...data.contact.coordinates, lat: e.target.value === '' ? 0 : parseFloat(e.target.value)}}})} />
+            <AdminInput label="Longitude" type="number" step="any" value={data.contact?.coordinates?.lng || ''} onChange={e => setData({...data, contact: {...data.contact, coordinates: {...data.contact.coordinates, lng: e.target.value === '' ? 0 : parseFloat(e.target.value)}}})} />
           </div>
         </div>
       </div>
