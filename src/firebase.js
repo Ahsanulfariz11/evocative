@@ -22,14 +22,14 @@ import {
 // FIREBASE CONFIG — Evocative Space
 // =============================================
 const firebaseConfig = {
-  apiKey: "AIzaSyCkTWvd34DFYiDBY8jYppPksriumDSUUV8",
-  authDomain: "ahsanulfariz-ca890.firebaseapp.com",
-  databaseURL: "https://ahsanulfariz-ca890-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "ahsanulfariz-ca890",
-  storageBucket: "ahsanulfariz-ca890.appspot.com",
-  messagingSenderId: "720587974156",
-  appId: "1:720587974156:web:edd52fe36800f6ff8e7029",
-  measurementId: "G-FQTMP2SS3M",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);

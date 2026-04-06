@@ -224,7 +224,6 @@ function Space({ spaceItems, loading, settings }) {
                   src={shouldLoad ? item.video : ''}
                   muted
                   playsInline
-                  crossOrigin="anonymous"
                   preload="auto"
                   onEnded={goToNextSlide}
                   poster={optimizeImage(item.poster || item.img)}
@@ -373,7 +372,6 @@ function Space({ spaceItems, loading, settings }) {
                       src={shouldLoad ? item.video : ''}
                       muted
                       playsInline
-                      crossOrigin="anonymous"
                       preload="auto"
                       onEnded={goToNextSlide}
                       poster={optimizeImage(item.poster || item.img)}

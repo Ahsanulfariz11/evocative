@@ -1,4 +1,4 @@
-const CACHE_NAME = 'evocative-v3';
+const CACHE_NAME = 'evocative-v4';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
