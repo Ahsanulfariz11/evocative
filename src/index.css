@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS VARIABLES ─────────────────────────────────────── */
+:root {
+  --black: #0a0a0a;
+  --white: #fafafa;
+  --neutral-50: #f5f5f5;
+  --neutral-100: #ebebeb;
+  --neutral-200: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --header-h: 64px;
+}
+
+/* ── BASE ──────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--white);
+    color: var(--black);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  *::selection {
+    background-color: var(--black);
+    color: var(--white);
+  }
+
+  /* Better touch targets on mobile */
+  button, a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  nav button, nav a {
+    min-height: unset;
+  }
+}
+
+/* ── SCROLLBAR ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--white); }
+::-webkit-scrollbar-thumb { background: var(--black); }
+::-webkit-scrollbar-thumb:hover { background: var(--neutral-600); }
+
+/* ── FONT MONO UTILITY ─────────────────────────────────── */
+@layer utilities {
+  .font-mono-custom {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  /* Skeleton loading animation */
+  .skeleton {
+    background: linear-gradient(90deg, #ebebeb 25%, #f5f5f5 50%, #ebebeb 75%);
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s infinite;
+  }
+
+  @keyframes skeleton-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Noise texture overlay */
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Scanline utility */
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* Brutalist shadow */
+  .shadow-brutal {
+    box-shadow: 4px 4px 0px 0px var(--black);
+  }
+  .shadow-brutal-lg {
+    box-shadow: 8px 8px 0px 0px var(--black);
+  }
+  .shadow-brutal-xl {
+    box-shadow: 16px 16px 0px 0px var(--black);
+  }
+
+  /* Hide scrollbar */
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+}
+
+/* ── ADMIN SHAKE ANIMATION ─────────────────────────────── */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+/* ── RESPONSIVE MENU GRID ──────────────────────────────── */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .menu-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── MOBILE NAV IMPROVEMENTS ───────────────────────────── */
+@media (max-width: 767px) {
+  /* Prevent grayscale on mobile for better UX */
+  .mobile-no-grayscale {
+    filter: none !important;
+  }
+
+  /* Larger tap areas for mobile */
+  .menu-card-btn {
+    padding: 14px 20px;
+  }
+}
+
+/* ── HORIZONTAL SCROLL ─────────────────────────────────── */
+.menu-horizontal {
+  display: flex !important;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden; /* Critical: prevents children from bleeding vertically */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding-right: 1.5rem; /* Peek effect — shows there are more cards */
+}
+
+.menu-horizontal > * {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: 68vw; /* ~2.5 cards visible on mobile = clear scroll cue */
+  min-width: 240px;
+  max-width: 280px;
+  overflow: hidden; /* Ensure each card clips its own content */
+  align-self: stretch; /* All cards same height in a row */
+}
+
+@media (min-width: 640px) {
+  .menu-horizontal > * {
+    width: 300px;
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .menu-horizontal > * {
+    width: 340px;
+    max-width: 340px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── PRINT ─────────────────────────────────────────────── */
+@media print {
+  nav, footer { display: none; }
+}
+
+/* --- Premium Industrial Effects --- */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.05) 51%,
+    transparent 51%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 10;
+  animation: scanlineScroll 10s linear infinite;
+}
+
+@keyframes scanlineScroll {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
+}
+
+.shadow-brutal-white {
+  box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 1);
+}
+
+.shadow-brutal-sm {
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+}
