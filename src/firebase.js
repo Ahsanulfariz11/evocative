@@ -395,13 +395,15 @@ export async function deleteTable(id) {
 // ANALYTICS & STATS
 // =============================================
 export const trackClick = async (type) => {
+  if (!type || typeof type !== 'string') return;
   try {
-    const counterRef = dRef(db, `stats/counters/${type}`);
+    const counterRef = dRef(db, `stats/counters/${type.replace(/[^a-zA-Z0-9_]/g, '_')}`);
     await runTransaction(counterRef, (currentValue) => {
       return (currentValue || 0) + 1;
     });
   } catch (err) {
-    console.error('Track click failed:', err);
+    // Silent fail for analytics but logged for developers
+    console.warn(`[Analytics] Track click failed for type: ${type}`, err);
   }
 };
 

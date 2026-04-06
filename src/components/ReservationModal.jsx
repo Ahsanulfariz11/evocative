@@ -53,9 +53,13 @@ const ReservationModal = ({ isOpen, onClose, settings }) => {
   // 3. Table Availability Logic
   const occupiedTableIds = useMemo(() => {
     if (!form.date || !form.time || !Array.isArray(allReservations)) return [];
-    const selectedHour = form.time.split(':')[0];
+    const selectedHour = parseInt(form.time.split(':')[0]);
     return allReservations
-      .filter(r => r.date === form.date && r.time?.startsWith(selectedHour) && r.status !== 'cancelled')
+      .filter(r => {
+        if (!r.date || !r.time || r.status === 'cancelled') return false;
+        const resHour = parseInt(r.time.split(':')[0]);
+        return r.date === form.date && resHour === selectedHour;
+      })
       .map(r => r.tableId)
       .filter(Boolean);
   }, [form.date, form.time, allReservations]);

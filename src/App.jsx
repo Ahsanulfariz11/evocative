@@ -39,7 +39,8 @@ export default function App() {
 
   // Auto-Scroll to section from URL param
   useEffect(() => {
-    if (section && !settingsLoading && !menuLoading) {
+    const isDataLoaded = !settingsLoading && !menuLoading && !eventsLoading && !galleryLoading && !spaceLoading;
+    if (section && isDataLoaded) {
       setTimeout(() => {
         const el = document.getElementById(section);
         if (el) {
@@ -48,7 +49,7 @@ export default function App() {
         }
       }, 500); // Small delay to ensure render is complete
     }
-  }, [section, settingsLoading, menuLoading]);
+  }, [section, settingsLoading, menuLoading, eventsLoading, galleryLoading, spaceLoading]);
 
   // Smooth Scroll Initialization (Lenis)
   useEffect(() => {
