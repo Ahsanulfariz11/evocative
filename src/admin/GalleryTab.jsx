@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, Loader2 } from 'lucide-react';
 import { subscribeGallery, addGalleryItem, deleteGalleryItem } from '../firebase';
-import ImageUploader from '../components/ImageUploader';
-import { useToast } from '../context/ToastContext';
-import { Loader, EmptyState, AdminInput } from './Common';
+import ImageUploader from '../components/ImageUploader.jsx';
+import { useToast } from '../context/ToastContext.jsx';
+import { Loader, EmptyState, AdminInput } from './Common.jsx';
 
 export default function GalleryTab() {
   const [items, setItems] = useState([]);

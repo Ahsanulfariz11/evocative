@@ -7,16 +7,16 @@ import { seedDatabase } from '../firebase';
 import { useToast } from '../context/ToastContext';
 
 // Modular Tab Components
-import StatsTab from '../admin/StatsTab';
-import ReservationsTab from '../admin/ReservationsTab';
-import ConfigTab from '../admin/ConfigTab';
-import CatalogTab from '../admin/CatalogTab';
-import SpaceTab from '../admin/SpaceTab';
-import TablesTab from '../admin/TablesTab';
-import GalleryTab from '../admin/GalleryTab';
-import EventsTab from '../admin/EventsTab';
-import ReviewsTab from '../admin/ReviewsTab';
-import { AdminInput } from '../admin/Common';
+import StatsTab from '../admin/StatsTab.jsx';
+import ReservationsTab from '../admin/ReservationsTab.jsx';
+import ConfigTab from '../admin/ConfigTab.jsx';
+import CatalogTab from '../admin/CatalogTab.jsx';
+import SpaceTab from '../admin/SpaceTab.jsx';
+import TablesTab from '../admin/TablesTab.jsx';
+import GalleryTab from '../admin/GalleryTab.jsx';
+import EventsTab from '../admin/EventsTab.jsx';
+import ReviewsTab from '../admin/ReviewsTab.jsx';
+import { AdminInput } from '../admin/Common.jsx';
 
 const TABS = [
   { id: 'insights', label: 'Insights', icon: TrendingUp },

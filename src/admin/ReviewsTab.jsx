@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Check, X, Star, Trash2, MessageSquare, Clock } from 'lucide-react';
-import { subscribeAllReviews, updateReview, deleteReview } from '../firebase';
-import { useToast } from '../context/ToastContext';
-import { Loader, Badge, ConfirmBtn } from './Common';
+import { subscribeAllReviews, updateReview, deleteReview } from '../firebase.js';
+import { useToast } from '../context/ToastContext.jsx';
+import { Loader, Badge, ConfirmBtn } from './Common.jsx';
 
 export default function ReviewsTab() {
   const [items, setItems] = useState([]);

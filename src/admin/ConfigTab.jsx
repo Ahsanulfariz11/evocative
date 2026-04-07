@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Database, Loader2 } from 'lucide-react';
-import { subscribeSettings, updateSettings } from '../firebase';
-import { useToast } from '../context/ToastContext';
-import ImageUploader from '../components/ImageUploader';
-import { Loader, AdminInput, AdminSelect, AdminTextarea } from './Common';
+import { subscribeSettings, updateSettings } from '../firebase.js';
+import { useToast } from '../context/ToastContext.jsx';
+import ImageUploader from '../components/ImageUploader.jsx';
+import { Loader, AdminInput, AdminSelect, AdminTextarea } from './Common.jsx';
 
 export default function ConfigTab() {
   const [data, setData] = useState(null);

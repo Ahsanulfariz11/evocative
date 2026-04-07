@@ -15,9 +15,9 @@ import {
   MapPin 
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { subscribeReservations, updateReservation, deleteReservation } from '../firebase';
-import { useToast } from '../context/ToastContext';
-import { Loader, EmptyState, Badge, ConfirmBtn } from './Common';
+import { subscribeReservations, updateReservation, deleteReservation } from '../firebase.js';
+import { useToast } from '../context/ToastContext.jsx';
+import { Loader, EmptyState, Badge, ConfirmBtn } from './Common.jsx';
 
 // --- CUSTOM BRUTALIST CALENDAR COMPONENT ---
 const BrutalistCalendar = ({ items, selectedDate, onSelect }) => {

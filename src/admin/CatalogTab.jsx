@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, ChevronDown, Check, X, Edit3, Image, Loader2 } from 'lucide-react';
-import { subscribeMenu, addMenuItem, updateMenuItem, deleteMenuItem } from '../firebase';
-import { useToast } from '../context/ToastContext';
-import ImageUploader from '../components/ImageUploader';
-import { Loader, EmptyState, AdminInput, AdminSelect, Badge, ConfirmBtn } from './Common';
+import { subscribeMenu, addMenuItem, updateMenuItem, deleteMenuItem } from '../firebase.js';
+import { useToast } from '../context/ToastContext.jsx';
+import ImageUploader from '../components/ImageUploader.jsx';
+import { Loader, EmptyState, AdminInput, AdminSelect, Badge, ConfirmBtn } from './Common.jsx';
 
 const CATEGORIES = ['Signature', 'Kopi', 'Non-Kopi', 'Pastry', 'Makanan'];
 

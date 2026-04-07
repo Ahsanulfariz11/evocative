@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useRef } from 'react';
 import Cropper from 'react-easy-crop';
 import { Camera, X, Check, Loader2, Upload } from 'lucide-react';
-import { uploadImage } from '../firebase';
-import { getCroppedImgBlob } from '../utils/cropImage';
+import { uploadImage } from '../firebase.js';
+import { getCroppedImgBlob } from '../utils/cropImage.js';
 
 /**
  * ImageUploader Component

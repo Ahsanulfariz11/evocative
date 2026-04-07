@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Check, Edit3, Trash2, Loader2, Users, Layout, MapPin, X } from 'lucide-react';
-import { subscribeTables, addTable, updateTable, deleteTable } from '../firebase';
-import { useToast } from '../context/ToastContext';
-import { Loader, EmptyState, AdminInput, AdminSelect, Badge, ConfirmBtn } from './Common';
+import { subscribeTables, addTable, updateTable, deleteTable } from '../firebase.js';
+import { useToast } from '../context/ToastContext.jsx';
+import { Loader, EmptyState, AdminInput, AdminSelect, Badge, ConfirmBtn } from './Common.jsx';
 
 export default function TablesTab() {
   const [items, setItems] = useState([]);

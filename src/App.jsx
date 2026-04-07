@@ -3,17 +3,17 @@ import Lenis from 'lenis';
 import { useParams } from 'react-router-dom';
 
 // Core Components
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Archive from './components/Archive';
-import MenuSection from './components/MenuSection';
-import Space from './components/Space';
-import CommunityHub from './components/CommunityHub';
-import Location from './components/Location';
-import Footer from './components/Footer';
-import SEO from './components/SEO';
-import ReservationModal from './components/ReservationModal';
+import Navbar from './components/Navbar.jsx';
+import Hero from './components/Hero.jsx';
+import About from './components/About.jsx';
+import Archive from './components/Archive.jsx';
+import MenuSection from './components/MenuSection.jsx';
+import Space from './components/Space.jsx';
+import CommunityHub from './components/CommunityHub.jsx';
+import Location from './components/Location.jsx';
+import Footer from './components/Footer.jsx';
+import SEO from './components/SEO.jsx';
+import ReservationModal from './components/ReservationModal.jsx';
 
 // Hooks & Utils
 import { 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Check, Edit3, Trash2, Loader2, X } from 'lucide-react';
-import { subscribeSpace, addSpaceItem, updateSpaceItem, deleteSpaceItem } from '../firebase';
-import ImageUploader from '../components/ImageUploader';
-import VideoUploader from '../components/VideoUploader';
-import { useToast } from '../context/ToastContext';
-import { Loader, EmptyState, AdminInput, AdminTextarea, ConfirmBtn } from './Common';
+import { subscribeSpace, addSpaceItem, updateSpaceItem, deleteSpaceItem } from '../firebase.js';
+import ImageUploader from '../components/ImageUploader.jsx';
+import VideoUploader from '../components/VideoUploader.jsx';
+import { useToast } from '../context/ToastContext.jsx';
+import { Loader, EmptyState, AdminInput, AdminTextarea, ConfirmBtn } from './Common.jsx';
 
 export default function SpaceTab() {
   const [items, setItems] = useState([]);

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Check, X, Edit3, Loader2, Calendar, Image as ImageIcon } from 'lucide-react';
-import { subscribeEvents, addEvent, updateEvent, deleteEvent } from '../firebase';
-import { useToast } from '../context/ToastContext';
-import ImageUploader from '../components/ImageUploader';
-import { Loader, EmptyState, AdminInput, AdminSelect, Badge, ConfirmBtn } from './Common';
+import { subscribeEvents, addEvent, updateEvent, deleteEvent } from '../firebase.js';
+import { useToast } from '../context/ToastContext.jsx';
+import ImageUploader from '../components/ImageUploader.jsx';
+import { Loader, EmptyState, AdminInput, AdminSelect, Badge, ConfirmBtn } from './Common.jsx';
 
 const EVENT_TYPES = ['Tournament', 'Workshop', 'Exhibition', 'Special', 'Music', 'Community'];
 

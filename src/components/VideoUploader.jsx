@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Video, Loader2, Upload, Check } from 'lucide-react';
-import { uploadImage as uploadFile } from '../firebase'; // reusing the same upload function
+import { uploadImage as uploadFile } from '../firebase.js'; // reusing the same upload function
 
 // Helper to extract a frame from video as a Blob
 const generateVideoThumbnail = (file) => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TrendingUp, QrCode, Smartphone, MapPin, Coffee, Calendar } from 'lucide-react';
-import { useAnalytics } from '../hooks/useFirebase';
-import { Loader } from './Common';
+import { useAnalytics } from '../hooks/useFirebase.js';
+import { Loader } from './Common.jsx';
 
 export default function StatsTab() {
   const { stats, loading } = useAnalytics();

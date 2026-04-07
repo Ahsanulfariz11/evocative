@@ -9,7 +9,7 @@ import { HeroSkeleton } from './components/Skeletons'
 
 // PERFORMANCE PROTOCOL: Lazy Loading Admin & App for < 100ms FCP
 const App = lazy(() => import('./App.jsx'))
-const AdminPage = lazy(() => import('./pages/AdminPage'))
+const AdminPage = lazy(() => import('./pages/AdminPage.jsx'))
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

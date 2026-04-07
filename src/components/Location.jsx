@@ -1,8 +1,8 @@
 import React from 'react';
 import { MapPin, ChevronRight, Map as MapIcon, ExternalLink, Navigation, Loader2, Clock } from 'lucide-react';
-import Reveal from './Reveal';
-import { trackClick } from '../hooks/useFirebase';
-import { Map, MapControls, MapMarker, MarkerContent, MarkerPopup, MarkerLabel, MapRoute } from './MapcnMap';
+import Reveal from './Reveal.jsx';
+import { trackClick } from '../hooks/useFirebase.js';
+import { Map, MapControls, MapMarker, MarkerContent, MarkerPopup, MarkerLabel, MapRoute } from './MapcnMap.tsx';
 
 function Location({ settings }) {
   const [routeCoords, setRouteCoords] = React.useState(null);

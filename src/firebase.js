@@ -173,7 +173,7 @@ export async function seedDatabase() {
 // =============================================
 // STORAGE HELPERS
 // =============================================
-import { uploadToCloudinary } from './cloudinary';
+import { uploadToCloudinary } from './cloudinary.js';
 
 export async function uploadImage(file, path = 'uploads') {
   try {
